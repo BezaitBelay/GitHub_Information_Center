@@ -12,15 +12,16 @@ class BranchesViewModel {
     var itemsSize: Int? {
         return items?.count
     }
+    
     private var githubRepository: GithubInfoRepository?
-    private var items: GithubBranches?
+    private var items: Branches?
     
     init(githubInfoRepository: GithubInfoRepository = GithubInfoRepository()){
         githubRepository = githubInfoRepository
     }
     
-    func getBranches(url: String?, completion: @escaping () -> Void) {
-        githubRepository?.getRepositoryBranches(url) { [weak self] list in
+    func getBranches(repositoryName: String?, completion: @escaping () -> Void) {
+        githubRepository?.getRepositoryBranches(repositoryName) { [weak self] list in
             self?.items = list
             completion()
         }
@@ -29,5 +30,4 @@ class BranchesViewModel {
     func getBranchName(index: Int) -> String? {
         return items?[index].name
     }
-    
 }

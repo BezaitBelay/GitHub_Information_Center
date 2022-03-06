@@ -143,7 +143,7 @@
 		53F2434F04EE8096156969391BDFAB6D /* RedirectHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RedirectHandler.swift; path = Source/RedirectHandler.swift; sourceTree = "<group>"; };
 		549A2F420E9FB27C980C51931F9B5475 /* Pods-GitHub_Information_CenterTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GitHub_Information_CenterTests-dummy.m"; sourceTree = "<group>"; };
 		558AA814924C85FD6471ED60700377A3 /* Bindable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Bindable.swift; path = TwoWayBondage/Classes/Bindable.swift; sourceTree = "<group>"; };
-		5D797E9A5C5782CE845840781FA1CC81 /* Alamofire */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D797E9A5C5782CE845840781FA1CC81 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		60489913EA17B2F21753F6825AA438CA /* TwoWayBondage-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TwoWayBondage-prefix.pch"; sourceTree = "<group>"; };
 		64F32127D46611E74A6ED14A0FDC2B24 /* Pods-GitHub_Information_CenterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GitHub_Information_CenterTests.release.xcconfig"; sourceTree = "<group>"; };
 		661E0F2D94E115E51CBD13970AC158B3 /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
@@ -167,7 +167,7 @@
 		9505EBD2556D4F0E571098F1CC8E66F2 /* Pods-GitHub_Information_Center-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GitHub_Information_Center-Info.plist"; sourceTree = "<group>"; };
 		9AED0EBD3D261272E841ED4ADC61AA46 /* Pods-GitHub_Information_Center-GitHub_Information_CenterUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GitHub_Information_Center-GitHub_Information_CenterUITests-acknowledgements.plist"; sourceTree = "<group>"; };
 		9C24356B14E74757D74156CAB9189A4F /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Alamofire.modulemap; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9DB1FEB7DE413FF174C65200437D0FC6 /* MultipartUpload.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartUpload.swift; path = Source/MultipartUpload.swift; sourceTree = "<group>"; };
 		A0C65E727115841584D81418E25AE730 /* Pods-GitHub_Information_Center-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GitHub_Information_Center-dummy.m"; sourceTree = "<group>"; };
 		A7224DA46ABD218AC71DBB9D00C79111 /* TwoWayBondage-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "TwoWayBondage-Info.plist"; sourceTree = "<group>"; };
@@ -256,7 +256,7 @@
 		2019B0E8DB53BA7A3D8CDA39A9AE6B87 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5D797E9A5C5782CE845840781FA1CC81 /* Alamofire */,
+				5D797E9A5C5782CE845840781FA1CC81 /* Alamofire.framework */,
 				77CECA3F436F7B9BE0176AA1EFB1BA96 /* Pods-GitHub_Information_Center */,
 				4B315301701BA7B9EAE7461D9AC7BC2B /* Pods-GitHub_Information_Center-GitHub_Information_CenterUITests */,
 				8C40EB3949A3637ED725694FAA42541A /* Pods-GitHub_Information_CenterTests */,
@@ -278,7 +278,6 @@
 				91F1A325A8D754A85776F63E491512E5 /* UIControls+Bindable.swift */,
 				EDA3E7AECE29A6921CC6D9EF4C806318 /* Support Files */,
 			);
-			name = TwoWayBondage;
 			path = TwoWayBondage;
 			sourceTree = "<group>";
 		};
@@ -398,7 +397,6 @@
 				7550CBBD9F9688EC9F6CCF98AE943478 /* Validation.swift */,
 				6715D03E4CA60F4DA9B35BAAF4649EEF /* Support Files */,
 			);
-			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -567,7 +565,7 @@
 			);
 			name = Alamofire;
 			productName = Alamofire;
-			productReference = 5D797E9A5C5782CE845840781FA1CC81 /* Alamofire */;
+			productReference = 5D797E9A5C5782CE845840781FA1CC81 /* Alamofire.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		F5558388CF8560323F08429D50F041E1 /* TwoWayBondage */ = {
@@ -595,7 +593,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1300;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 13.0";
@@ -903,7 +901,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Alamofire/Alamofire-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1040,7 +1038,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Alamofire/Alamofire-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

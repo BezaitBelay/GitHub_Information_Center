@@ -11,22 +11,49 @@ import UIKit
 
 class DashboardViewController: UIViewController {
     
-    @IBOutlet weak var dashboardTableView: UITableView!
     var viewModel: DashboardViewModel?
+    
+    @IBOutlet weak var dashboardTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         dashboardTableView.dataSource = self
         dashboardTableView.delegate = self
         registerTableViewCells()
-        //
-        //        register(UINib.init(nibName: "\(RepositoryTableViewCell.self)", bundle: nil), forCellReuseIdentifier: "\(RepositoryTableViewCell.self)")
+        addBarButtons()
+        bindViewModel()
         title = viewModel?.title
+    }
+    
+    @objc private func logout() {
+        viewModel?.logoutUser()
+    }
+    
+    @objc private func refreshData() {
+        viewModel?.refreshData()
     }
     
     private func registerTableViewCells() {
         let textFieldCell = UINib(nibName: "RepositoryTableViewCell", bundle: nil)
         self.dashboardTableView.register(textFieldCell, forCellReuseIdentifier: "RepositoryTableViewCell")
+    }
+    
+    private func addBarButtons() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: Constants.logout,
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(logout))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: Constants.refresh,
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(refreshData))
+    }
+    
+    private func bindViewModel() {
+        viewModel?.shouldRefreshData.bind { [weak self] _ in
+            guard let strongSelf = self else { return }
+            strongSelf.dashboardTableView.reloadData()
+        }
     }
 }
 
@@ -45,6 +72,7 @@ extension DashboardViewController: UITableViewDataSource {
 
 extension DashboardViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        dashboardTableView.deselectRow(at: indexPath, animated: true)
         viewModel?.openBranches(for: indexPath.row)
     }
 }

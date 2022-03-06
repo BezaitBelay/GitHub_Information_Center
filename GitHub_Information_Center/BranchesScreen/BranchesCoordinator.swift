@@ -9,25 +9,21 @@ import Foundation
 import UIKit
 
 class BranchesCoordinator: Coordinator {
-    var childCoordinator = [Coordinator]()
     var navigationController: UINavigationController
-    var repo: GithubRepositoryElement
+    var repository: Repository
     
-    init(navVC: UINavigationController, repo: GithubRepositoryElement){
+    init(navVC: UINavigationController, repository: Repository){
         navigationController = navVC
-        self.repo = repo
+        self.repository = repository
     }
     
     func start() {
         guard let topVC = BranchesViewController.instantiateFromStoryboard() as? BranchesViewController else { return }
         
         let viewModel = BranchesViewModel()
-        //        viewModel.delegate = self
         topVC.viewModel = viewModel
-        viewModel.getBranches(url: repo.name) {
+        viewModel.getBranches(repositoryName: repository.url) {
             self.navigationController.pushViewController(topVC, animated: false)
         }
     }
-    
-    
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import TwoWayBondage
 
 class DashboardViewModel {
     
@@ -19,17 +20,22 @@ class DashboardViewModel {
     }
     
     var delegate: DashboardCoordinatorDelegate?
+    var shouldRefreshData = Observable<Bool>(false)
     
-    private var user: GithubUser
-    private var items: GithubRepository?
+    private var user: User
+    private var items: Repositories?
     private var githubRepository: GithubInfoRepository
+    private var userDefaultsRepository: UserDefaultsRepository?
     
-    init(user: GithubUser, githubInfoRepository: GithubInfoRepository = GithubInfoRepository()) {
+    init(user: User,
+         githubInfoRepository: GithubInfoRepository = GithubInfoRepository(),
+         userDefaultsRepository: UserDefaultsRepository = UserDefaultsRepository()) {
         self.user = user
         self.githubRepository = githubInfoRepository
+        self.userDefaultsRepository = userDefaultsRepository
     }
     
-    func getElement(index: Int) -> GithubRepositoryElement? {
+    func getElement(index: Int) -> Repository? {
         return items?[index]
     }
     
@@ -37,13 +43,28 @@ class DashboardViewModel {
         githubRepository.getUserRepositories(repositoriesLink: user.reposURL) { [weak self] repos in
             guard let strongSelf = self else { return }
             strongSelf.items = repos
+            if strongSelf.userDefaultsRepository?.getObject(of: Date.self, for: Constants.lastListUpdate) == nil {
+                self?.userDefaultsRepository?.setObjectValue(Date(), for: Constants.lastListUpdate)
+            }
             completion()
         }
     }
     
     func openBranches(for index: Int) {
-        let item = items?[index]
-        
-        delegate?.openBranches(for: item!)
+        guard let item = items?[index] else { return }
+        delegate?.openBranches(for: item)
+    }
+    
+    func logoutUser() {
+        userDefaultsRepository?.removeValue(for: Constants.loggedUser)
+        userDefaultsRepository?.removeValue(for: Constants.lastListUpdate)
+        delegate?.openLoginScreen()
+    }
+    
+    func refreshData() {
+        getUserRepositories { [weak self] in
+            self?.userDefaultsRepository?.setObjectValue(Date(), for: Constants.lastListUpdate)
+            self?.shouldRefreshData.value = true
+        }
     }
 }

@@ -5,15 +5,12 @@
 //  Created by Dynamo Software on 5.03.22.
 //
 
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let githubRepository = try? newJSONDecoder().decode(GithubRepository.self, from: jsonData)
-
 import Foundation
 
-// MARK: - GithubRepositoryElement
-struct GithubRepositoryElement: Codable {
+typealias Repositories = [Repository]
+
+// MARK: - Repository
+struct Repository: Codable {
     let id: Int?
     let nodeID, name, fullName: String?
     let githubRepositoryPrivate: Bool?
@@ -59,7 +56,7 @@ struct GithubRepositoryElement: Codable {
     let visibility: String?
     let forks, openIssues, watchers: Int?
     let defaultBranch: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case nodeID = "node_id"
@@ -150,7 +147,7 @@ struct Owner: Codable {
     let receivedEventsURL: String?
     let type: String?
     let siteAdmin: Bool?
-
+    
     enum CodingKeys: String, CodingKey {
         case login, id
         case nodeID = "node_id"
@@ -184,7 +181,3 @@ struct License: Codable {
         case nodeID = "node_id"
     }
 }
-
-
-typealias GithubRepository = [GithubRepositoryElement]
-

@@ -12,13 +12,12 @@ class GithubInfoRepository {
     
     let githubURL: String = "https://api.github.com"
     
-    func getUserInfo(username: String, completion: @escaping (GithubUser?) -> Void) {
-        let user = "bezaitbelay"
-        let url = "\(githubURL)/users/\(user)"
+    func getUserInfo(username: String, completion: @escaping (UserResponseUnion?) -> Void) {
+        let url = "\(githubURL)/users/\(username)"
         AF.request(url).responseJSON { response in
             do {
                 if let JSON = response.data {
-                    let obj = try JSONDecoder().decode(GithubUser.self, from: JSON)
+                    let obj = try JSONDecoder().decode(UserResponseUnion.self, from: JSON)
                     completion(obj)
                 }
             } catch let error {
@@ -27,12 +26,12 @@ class GithubInfoRepository {
         }
     }
     
-    func getUserRepositories(repositoriesLink: String?, completion: @escaping (GithubRepository?) -> Void) {
+    func getUserRepositories(repositoriesLink: String?, completion: @escaping (Repositories?) -> Void) {
         guard let link = repositoriesLink else { return }
         AF.request(link).responseJSON { response in
             do {
                 if let JSON = response.data {
-                    let obj = try JSONDecoder().decode(GithubRepository.self, from: JSON)
+                    let obj = try JSONDecoder().decode(Repositories.self, from: JSON)
                     completion(obj)
                 }
             } catch let error {
@@ -41,14 +40,13 @@ class GithubInfoRepository {
         }
     }
     
-    func getRepositoryBranches(_ username: String?, completion: @escaping (GithubBranches?) -> Void) {
-            let user = "bezaitbelay"
-            let url = "\(githubURL)/repos/\(user)/\(username!)/branches"
-//        guard let link = repositoryLink else { return }
+    func getRepositoryBranches(_ repositoryUrl: String?, completion: @escaping (Branches?) -> Void) {
+        guard let repositoryUrl = repositoryUrl else { return }
+        let url = "\(repositoryUrl)/branches"
         AF.request(url).responseJSON { response in
             do {
                 if let JSON = response.data {
-                    let obj = try JSONDecoder().decode(GithubBranches.self, from: JSON)
+                    let obj = try JSONDecoder().decode(Branches.self, from: JSON)
                     completion(obj)
                 }
             } catch let error {

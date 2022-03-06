@@ -1,20 +1,18 @@
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
 //
-//   let githubUser = try? newJSONDecoder().decode(GithubUser.self, from: jsonData)
+//  User.swift
+//  GitHub_Information_Center
+//
+//  Created by Dynamo Software on 5.03.22.
+//
+
 
 import Foundation
-import Alamofire
-
-struct UserResponse: Codable {
-    let userResponse: UserResponseUnion
-}
 
 enum UserResponseUnion: Codable {
     case errorResponse(ErrorResponse)
-    case githubUser(GithubUser)
+    case githubUser(User)
     
-    var data: GithubUser? {
+    var data: User? {
         switch self {
         case .errorResponse(_): return nil
         case .githubUser(let user): return user
@@ -35,7 +33,7 @@ enum UserResponseUnion: Codable {
                 self = .errorResponse(element)
                 return
             }
-            if let element = try? container.decode(GithubUser.self) {
+            if let element = try? container.decode(User.self) {
                 self = .githubUser(element)
                 return
             }
@@ -48,19 +46,17 @@ enum UserResponseUnion: Codable {
 
 // MARK: - ErrorResponse
 struct ErrorResponse: Codable {
-    let message: String?
-    let documentationURL: String?
-
+    let message: String
+    let documentationURL: String
+    
     enum CodingKeys: String, CodingKey {
         case message
         case documentationURL = "documentation_url"
     }
 }
 
-
-
-// MARK: - Welcome
-struct GithubUser: Codable {
+// MARK: - GithubUser
+struct User: Codable {
     let login: String
     let id: Int
     let nodeID: String?
@@ -84,7 +80,7 @@ struct GithubUser: Codable {
     let collaborators: Int?
     let twoFactorAuthentication: Bool?
     let plan: Plan?
-
+    
     enum CodingKeys: String, CodingKey {
         case login, id
         case nodeID = "node_id"
@@ -120,41 +116,14 @@ struct GithubUser: Codable {
     }
 }
 
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responsePlan { response in
-//     if let plan = response.result.value {
-//       ...
-//     }
-//   }
-
 // MARK: - Plan
 struct Plan: Codable {
     let name: String?
     let space, privateRepos, collaborators: Int?
-
+    
     enum CodingKeys: String, CodingKey {
         case name, space
         case privateRepos = "private_repos"
         case collaborators
     }
 }
-
-// MARK: - Helper functions for creating encoders and decoders
-
-//func newJSONDecoder() -> JSONDecoder {
-//    let decoder = JSONDecoder()
-//    if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
-//        decoder.dateDecodingStrategy = .iso8601
-//    }
-//    return decoder
-//}
-//
-//func newJSONEncoder() -> JSONEncoder {
-//    let encoder = JSONEncoder()
-//    if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
-//        encoder.dateEncodingStrategy = .iso8601
-//    }
-//    return encoder
-//}

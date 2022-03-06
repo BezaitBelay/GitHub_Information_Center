@@ -9,12 +9,14 @@ import Foundation
 import UIKit
 
 class BranchesViewController: UIViewController {
-
-    @IBOutlet weak var branchesTableView: UITableView!
+    
     var viewModel: BranchesViewModel?
+    
+    @IBOutlet weak var branchesTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = Constants.branches
         branchesTableView.dataSource = self
         registerTableViewCells()
     }

@@ -7,24 +7,32 @@
 
 import Foundation
 import Alamofire
+import TwoWayBondage
 
 class WelcomeViewModel {
     
     var delegate: WelcomeCoordinatorDelegate?
-    var githubRepository: GithubInfoRepository?
-    var user: GithubUser?
+    var githubInfoRepository: GithubInfoRepository?
+    var userDefaultsRepository: UserDefaultsRepository?
+    var user: User?
+    let shouldShowAlert = Observable<AlertData>()
     
-    init(githubInfoRepository: GithubInfoRepository = GithubInfoRepository()) {
-        githubRepository = githubInfoRepository
+    init(githubInfoRepository: GithubInfoRepository = GithubInfoRepository(),
+         userDefaultsRepository: UserDefaultsRepository = UserDefaultsRepository()) {
+        self.githubInfoRepository = githubInfoRepository
+        self.userDefaultsRepository = userDefaultsRepository
     }
     
     func didPressLogin(with username: String) {
-        githubRepository?.getUserInfo(username: username) { [weak self] user in
-            guard let strongSelf = self else { return }
-            guard let user2 = user else { return }
-            strongSelf.user = user2
-            strongSelf.delegate?.openDashboard(user: user2)
+        githubInfoRepository?.getUserInfo(username: username) { [weak self] user in
+            guard let strongSelf = self, let userInfo = user  else { return }
+            if let successUser = userInfo.data {
+                strongSelf.user = successUser
+                strongSelf.userDefaultsRepository?.setObjectValue(successUser, for: Constants.loggedUser)
+                strongSelf.delegate?.openDashboard(user: successUser)
+            } else if let errorUser = userInfo.error {
+                self?.shouldShowAlert.value = AlertData(title: Constants.errorTitle, message: errorUser.message)
+            }
         }
     }
-    
 }

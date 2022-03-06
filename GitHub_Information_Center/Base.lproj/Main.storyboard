@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -17,17 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GXY-YQ-iS5">
-                                <rect key="frame" x="50" y="431" width="314" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="GXY-YQ-iS5">
+                                <rect key="frame" x="50" y="94" width="314" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQK-AR-iJm">
-                                <rect key="frame" x="173.5" y="500" width="67" height="31"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XdZ-rH-nzC">
+                                <rect key="frame" x="175.5" y="158" width="63.5" height="31"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Log in"/>
                                 <connections>
-                                    <action selector="loginButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qvq-Vm-pZA"/>
+                                    <action selector="loginButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HMS-TM-9h5"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -35,17 +35,17 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="GXY-YQ-iS5" firstAttribute="leading" secondItem="su0-Kf-YNb" secondAttribute="leading" constant="50" id="IVh-Xi-YJb"/>
-                            <constraint firstItem="hQK-AR-iJm" firstAttribute="top" secondItem="GXY-YQ-iS5" secondAttribute="bottom" constant="35" id="JCg-s8-pF1"/>
-                            <constraint firstItem="GXY-YQ-iS5" firstAttribute="centerY" secondItem="oLK-8r-s8T" secondAttribute="centerY" id="T71-UZ-aK9"/>
+                            <constraint firstItem="GXY-YQ-iS5" firstAttribute="centerX" secondItem="oLK-8r-s8T" secondAttribute="centerX" id="TJk-Cv-eWX"/>
                             <constraint firstItem="su0-Kf-YNb" firstAttribute="trailing" secondItem="GXY-YQ-iS5" secondAttribute="trailing" constant="50" id="WLf-dx-olV"/>
-                            <constraint firstItem="hQK-AR-iJm" firstAttribute="centerX" secondItem="oLK-8r-s8T" secondAttribute="centerX" id="ffS-gZ-ody"/>
+                            <constraint firstItem="XdZ-rH-nzC" firstAttribute="top" secondItem="GXY-YQ-iS5" secondAttribute="bottom" constant="30" id="aXC-6g-aXy"/>
+                            <constraint firstItem="XdZ-rH-nzC" firstAttribute="centerX" secondItem="oLK-8r-s8T" secondAttribute="centerX" id="dm5-uH-Igh"/>
+                            <constraint firstItem="GXY-YQ-iS5" firstAttribute="top" secondItem="su0-Kf-YNb" secondAttribute="top" constant="50" id="jnU-pI-VQi"/>
                             <constraint firstItem="GXY-YQ-iS5" firstAttribute="centerX" secondItem="oLK-8r-s8T" secondAttribute="centerX" id="lIA-N8-rwO"/>
-                            <constraint firstItem="hQK-AR-iJm" firstAttribute="centerY" secondItem="oLK-8r-s8T" secondAttribute="centerY" constant="67.5" id="uid-Pg-2kU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="XcV-X0-jih"/>
                     <connections>
-                        <outlet property="loginButton" destination="hQK-AR-iJm" id="CD9-ES-NBa"/>
+                        <outlet property="loginButton" destination="XdZ-rH-nzC" id="Gw7-fl-eBP"/>
                         <outlet property="usernameTextField" destination="GXY-YQ-iS5" id="Vzl-Ky-Ph2"/>
                     </connections>
                 </viewController>
@@ -62,7 +62,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="f2w-mb-rt6">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -75,6 +75,8 @@
                             <constraint firstItem="VEN-JI-FUo" firstAttribute="bottom" secondItem="f2w-mb-rt6" secondAttribute="bottom" id="qbK-yU-o45"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="dashboardTableView" destination="f2w-mb-rt6" id="GPf-a3-mYb"/>
                     </connections>

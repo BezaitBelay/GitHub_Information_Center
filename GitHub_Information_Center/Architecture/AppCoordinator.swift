@@ -9,15 +9,14 @@ import Foundation
 import UIKit
 
 class AppCoordinator: Coordinator {
-    var childCoordinator = [Coordinator]()
-    var navigationController: UINavigationController
+    var window: UIWindow?
     
-    init(navVC: UINavigationController) {
-        navigationController = navVC
+    init(window: UIWindow?) {
+        self.window = window
     }
     
     func start() {
-        let coordinator = WelcomeCoordinator(navigationController: navigationController)
+        let coordinator = WelcomeCoordinator(window: window)
         coordinator.start()
     }
 }

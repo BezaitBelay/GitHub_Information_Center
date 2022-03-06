@@ -9,17 +9,19 @@ import Foundation
 import UIKit
 
 protocol DashboardCoordinatorDelegate {
-    func openBranches(for repo: GithubRepositoryElement)
+    func openBranches(for respository: Repository)
+    func openLoginScreen()
 }
 
 class DashboardCoordinator: Coordinator {
-    var childCoordinator = [Coordinator]()
     var navigationController: UINavigationController
-    var user: GithubUser
+    var user: User
+    var window: UIWindow?
     
-    init(navVC: UINavigationController, user: GithubUser) {
-        navigationController = navVC
+    init(window: UIWindow?, user: User) {
+        navigationController = UINavigationController()
         self.user = user
+        self.window = window
     }
     
     func start() {
@@ -28,15 +30,22 @@ class DashboardCoordinator: Coordinator {
         let viewModel = DashboardViewModel(user: user)
         viewModel.delegate = self
         topVC.viewModel = viewModel
-        viewModel.getUserRepositories { 
-            self.navigationController.pushViewController(topVC, animated: false)
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
+        viewModel.getUserRepositories { [weak self] in
+            self?.navigationController.pushViewController(topVC, animated: false)
         }
     }
 }
 
 extension DashboardCoordinator: DashboardCoordinatorDelegate {
-    func openBranches(for repo: GithubRepositoryElement) {
-        let coordinator = BranchesCoordinator(navVC: navigationController, repo: repo)
+    func openBranches(for respository: Repository) {
+        let coordinator = BranchesCoordinator(navVC: navigationController, repository: respository)
+        coordinator.start()
+    }
+    
+    func openLoginScreen() {
+        let coordinator = WelcomeCoordinator(window: window)
         coordinator.start()
     }
 }
